@@ -1,0 +1,45 @@
+
+.font {
+  &-10 {
+    font-size: 10px;
+  }
+  &-12 {
+    font-size: 12px;
+  }
+  &-14 {
+    font-size: 14px;
+  }
+  &-16 {
+    font-size: 16px;
+  }
+  &-18 {
+    font-size: 18px;
+  }
+  &-24 {
+    font-size: 24px;
+  }
+  &-48 {
+    font-size: 48px;
+  }
+}
+
+.text {
+  &-left {
+    text-align: left;
+  }
+  &-center {
+    text-align: center;
+  }
+  &-right {
+    text-align: right;
+  }
+}
+
+.color {
+  &-lightGray {
+    color: $lightGray;
+  }
+  &-gray {
+    color: $gray;
+  }
+}

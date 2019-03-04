@@ -1,0 +1,25 @@
+@import "../../helpers/helpers";
+
+.album {
+  &-list-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px;
+    padding: 16px 0;
+    border-top: 1px solid $gray;
+    &:first-child {
+      border-top: 0;
+    }
+  }
+}
+@media (min-width: $sm) {
+  .album {
+    &-content {
+      display: flex;
+      margin: 60px 32px 0;
+    }
+    &-list {
+      flex: 1;
+    }
+  }
+}

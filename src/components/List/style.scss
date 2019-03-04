@@ -1,0 +1,38 @@
+@import "../../helpers/helpers";
+
+.list {
+  &-item {
+    margin-right: 16px;
+  }
+  &-title {
+    font-weight: 400;
+    margin-top: 40px;
+  }
+  &-swiper {
+    display: flex;
+    overflow-x: scroll;
+  }
+  &-lines {
+    .list-item {
+      margin-top: 16px;
+    } 
+  }
+}
+
+@media (min-width: $sm) {
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    .list-item {
+      width: 25%;
+      margin: 0 0 16px 0;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .list .list-item {
+    width: 20%;
+  }
+}

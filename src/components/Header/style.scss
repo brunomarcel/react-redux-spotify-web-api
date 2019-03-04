@@ -1,0 +1,20 @@
+@import "../../helpers/helpers";
+
+.header {
+  &-logo {
+    width: 40px;
+    margin: 24px auto 0;
+    display: block;
+  }
+}
+
+@media (min-width: $sm) {
+  .header {
+    &-link {
+      padding: 22px 0 0 0;
+      margin: 0; 
+      margin-right: 16px;
+      display: block;
+    }  
+  }
+}

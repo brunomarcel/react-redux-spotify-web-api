@@ -1,0 +1,41 @@
+@import "../../helpers/helpers";
+
+.item {
+  margin-right: 16px;
+  &-lines {
+    display: flex;
+    .item-thumb {
+      margin-right: 8px;
+      height: 50px;
+      width: 50px;
+    }
+  }
+  &-single {
+    display: block;
+    margin: 48px 16px 32px 16px;
+    text-align: center;
+  }
+}
+
+@media (min-width: $sm) {
+  .item {
+    display: block;
+    .item-thumb {
+      width: 100%;
+      height: auto;
+      padding: 0 8px;
+      box-sizing: border-box;
+    }
+    &-single {
+      margin: 18px 0 0 0;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .item {
+    &-single {
+      width: 300px;
+    }
+  }
+}
