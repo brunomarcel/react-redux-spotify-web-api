@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './style.scss'
 
-const Header = (props) => (
+const Header = () => (
   <div className="header">
     <Link className="header-link" to='/'>
       <h1 className='header-title'>

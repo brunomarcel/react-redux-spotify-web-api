@@ -13,7 +13,7 @@ ReactDOM.render(
     <Router>
       <div>
         <Route path="/" exact={true} component={App} />
-        <Route path="/album" component={Album} />
+        <Route path="/album/:id" component={Album} />
       </div>
     </Router>
   </Provider>,

@@ -1,15 +1,18 @@
 import {
   FETCH_SEARCH,
   FETCH_SEARCH_SUCCESS,
-  FETCH_SEARCH_ERROR,
-  UNAUTHORIZED
+  UNAUTHORIZED,
+  FETCH_ALBUM_SUCCESS,
+  FETCH_SEARCH_ERROR
 } from '../actions/actionTypes'
 
 const initialState = {
   searchValue: '',
   fetching: false,
-  list: [],
-  unauthorized: false
+  unauthorized: false,
+  list: {},
+  album: {},
+  error: false
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -26,10 +29,23 @@ export const searchReducer = (state = initialState, action) => {
         fetching: action.fetching
       };
     case FETCH_SEARCH_SUCCESS:
+      Object.assign(initialState.list, action.list)
       return {
         ...state,
-        list: action.list,
-        fetching: false
+        list: initialState.list,
+        fetching: false,
+        error: false
+      };
+    case FETCH_SEARCH_ERROR:
+      return {
+        ...state,
+        fetching: false,
+        error: true
+      };
+    case FETCH_ALBUM_SUCCESS:
+      return {
+        ...state,
+        album: action.album
       };
     default:
       return state;

@@ -1,16 +1,11 @@
 import axios from 'axios'
 import {
-  CLICK_UPDATE_VALUE,
   FETCH_SEARCH,
   FETCH_SEARCH_SUCCESS,
-  UNAUTHORIZED
+  UNAUTHORIZED,
+  FETCH_ALBUM_SUCCESS,
+  FETCH_SEARCH_ERROR
 } from './actionTypes'
-
-export function clickButton() {
-  return (dispatch) => {
-    return dispatch(test('dasjhk'))
-  }
-}
 
 export const unauthorizedToken = (flag) => ({
   type: UNAUTHORIZED,
@@ -27,7 +22,44 @@ export function search(value) {
     };
     axios.get(spotifyURI, config)
       .then(res => {
-        return dispatch(searchListSuccess(res))
+        if (res.data.albums.items.length && res.data.tracks.items.length) {
+          const list = {
+            'albums': res.data.albums.items,
+            'tracks': res.data.tracks.items
+          }
+          localStorage.setItem('list', JSON.stringify({
+            [value]: list
+          }))
+          localStorage.setItem('lastSearch', value)
+          return dispatch(searchListSuccess(
+            {
+              [value]: list
+            })
+          )
+        } else {
+          dispatch(searchListError())
+        }
+      })
+      .catch(function (error) {
+        if (error.response && error.response.status === 401) {
+          dispatch(unauthorizedToken(true))
+        } else {
+          dispatch(searchListError())
+        }
+      })
+  }
+}
+
+export function fetchAlbum(id) {
+  return (dispatch) => {
+    const spotifyURI = `https://api.spotify.com/v1/albums/${id}`
+    const accessToken = localStorage.getItem('accessToken')
+    const config = {
+      headers: { 'Authorization': 'Bearer ' + accessToken }
+    };
+    axios.get(spotifyURI, config)
+      .then(res => {
+        return dispatch(fetchAlbumSuccess(res.data))
       })
       .catch(function (error) {
         if (error.response.status === 401) {
@@ -45,4 +77,13 @@ export const searchList = (flag) => ({
 export const searchListSuccess = (list) => ({
   type: FETCH_SEARCH_SUCCESS,
   list: list
+})
+
+export const searchListError = () => ({
+  type: FETCH_SEARCH_ERROR
+})
+
+export const fetchAlbumSuccess = (album) => ({
+  type: FETCH_ALBUM_SUCCESS,
+  album: album
 })

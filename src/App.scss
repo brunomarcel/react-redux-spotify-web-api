@@ -1,14 +1,22 @@
-@import "./helpers/helpers";
+@import './helpers/helpers';
+@import './components/Header/style';
+@import './components/Album/style';
+@import './components/Item/style';
+@import './components/List/style';
 
 .app {
   padding: 0 16px;
+  transition: padding .2s;
+  &.empty {
+    padding-top: 100px;
+  }
   &-searchBox {
     padding-top: 32px;
     position: relative;
     &-label {
       font-size: 24px;
       position: absolute;
-      bottom: 17px;
+      bottom: 1px;
       left: 0;
       transition: bottom .2s, font-size .2s;
       white-space: nowrap;
@@ -62,21 +70,25 @@
     border: 0;
     margin-top: 16px;
   }
-  &-save {
-    border-radius: 5px;
-    border: 0;
-    padding: 8px 16px;
-    margin-top: 8px;
-  }
 }
 
+.spinner {
+  display: block;
+  height: 60px;
+}
 @media (min-width: $sm) {
   .app{
+    &.empty {
+      padding-top: 200px;
+    }
     &-searchBox {
       flex: 1;
       &-input,
       &-label {
         font-size: 48px;
+      }
+      &-label {
+        bottom: 17px;
       }
       &-input:not(:placeholder-shown) + .app-searchBox-label {
         bottom: 66px;
